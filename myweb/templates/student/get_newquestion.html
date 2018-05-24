@@ -1,0 +1,93 @@
+{%extends 'student/student_index.html'%}
+{%block block_1%}
+    <script type="text/javascript">
+        $(function () {
+            containers=$('#containers')
+             for(var i=1;i<=$('#pnum').val();i++) {
+                $('#index').append('<li style="display: inline-block;list-style: none;text-align: center"><button id="'+i+'" value="'+i+'">' + i + '</button></li>&nbsp;')
+            }
+             var jgl = $('#pnum1').val()
+
+            var buttons=$('#index li button')
+
+            $('#lastpage').click(function () {
+                if(jgl==1){
+                     window.location.href = '/sget_newquestion/1'
+                }
+                else {
+                    jgl=parseInt(jgl)-1
+                     window.location.href = '/sget_newquestion/'+jgl+''
+                }
+            })
+            $('#nextpage').click(function () {
+                if(jgl==buttons.length){
+                    window.location.href = '/sget_newquestion/'+buttons.length+''
+                }
+                else {
+                    jgl=parseInt(jgl)+1
+                     window.location.href = '/sget_newquestion/'+jgl+''
+                }
+            })
+            for(var i=0;i<buttons.length;i++) {
+                (function (i) {
+                    buttons[i].onclick=function () {
+                         i+=1
+                        window.location.href = '/sget_newquestion/'+i+''
+                    }
+                })(i)
+            }
+
+            $.get('/get_newquestionhandle/'+jgl+'',function (dict) {
+             $.each(dict.data,function (index,item) {
+                 containers.append('<br/>\n' +
+                     '    <div style="border-top:1px solid  #e5e5e5;border-bottom: 1px solid #e5e5e5;height: auto;width: 650px;display: inline-block">\n' +
+                     '        <div style="display: inline-block;width: 100px;float: left;padding-top: 10px">\n' +
+                     '            <div style="width: 50px;height: 50px;border-radius: 50%;">\n' +
+                     '                <a><img style="width: 50px;height: 50px;border-radius: 50%;" src="'+item.icon_address+'" alt="icon"></a>\n' +
+                     '            </div>\n' +
+                     '            <div>'+item.author_name+'</div>\n' +
+                     '        </div>\n' +
+                     '        <div style="display: inline-block">\n' +
+                     '            <a href="/squestiondetail/'+item.id+'"><h3><div>'+item.question_title+'</div></h3></a>\n' +
+                     '            <div>'+item.sub_time+'</div>\n' +
+                     '            <br/>\n' +
+                     '            <div class="testDIV">'+item.questions_content+'</div>\n' +
+                     '            <br/>\n' +
+                     '            <div style="display: inline-block;"><a href="/attention/'+item.id+'/">+关注</a></div>\n' +
+                     '            &nbsp;&nbsp;\n' +
+                     '            <div style="display: inline-block;">关注量：'+item.attentions_number+'</div>\n' +
+                     '            &nbsp;&nbsp;\n' +
+                     '            <div style="display: inline-block;">回答量：'+item.answers_number+'</div>\n' +
+                     '        </div>')
+             })
+         })
+        })
+    </script>
+    {%endblock%}
+{% block block_11%}
+<div class="container-fluid" style="position: absolute;top: 90px;left: 220px" >
+    <strong>最新问题</strong>
+
+    <div id="containers" name="containers"></div>
+    <br/>
+     <ul name="index" id="index" style="display: block;overflow: hidden;white-space: nowrap">
+        <li style="display: inline-block;list-style: none;text-align: center"><a id="lastpage">上一页</a></li>
+        <li style="display: inline-block;list-style: none;text-align: center"><a type="button" id="nextpage">下一页</a></li>
+    </ul>
+    &nbsp;<input id="pnum" value="{{b}}" style="display: none"></input>
+    &nbsp;<input id="pnum1" value="{{index1}}" style="display: none"></input>
+    <div style="display: inline-block;position: absolute;top:45px;left:700px;width: 150px ;height: 600px;">
+
+        <ul style="text-align: center;border: 1px solid #e5e5e5;line-height:30px  ">
+            <li style="list-style: none;border-bottom:1px solid #e5e5e5 "><a href="/s_question">提问</a></li>
+            <li style="list-style: none;border-bottom:1px solid #e5e5e5 "><a href="/shomepage">热门问题</a></li>
+            <li style="list-style: none;border-bottom:1px solid #e5e5e5 "><a href="/sget_newquestion">最新问题</a></li>
+            <li style="list-style: none;border-bottom:1px solid #e5e5e5"><a href="/sget_attentions">我关注的问题</a></li>
+            <li style="list-style: none;border-bottom:1px solid #e5e5e5"><a href="/sget_myanswer">我回答的问题</a></li>
+            <li style="list-style: none;border-bottom:1px solid #e5e5e5"><a href="/sget_myquestion">我的提问</a></li>
+        </ul>
+    </div>
+
+</div>
+
+{% endblock %}

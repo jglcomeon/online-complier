@@ -1,0 +1,25 @@
+@charset "utf-8";
+/* CSS Document */
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, a, code, em, img, q, small, strong, dd, dl, dt, li, ol, ul, fieldset, form, label, table, tbody, tr, th, td, input{padding:0;margin:0;}
+ul{list-style:none;}
+a{text-decoration:none; color:#282828;}
+img{border:none;}
+h1,h2,h3,h4,h5,h6{font-size:14px;}
+.mt10{margin-top:10px;}
+.cls{ clear:both;}
+s{ text-decoration:none;}
+.pt20{ padding-top:20px;}
+.mt20{ margin-top:20px;}
+.mt40{ margin-top:40px;}
+a, area {blr:expression(this.onFocus=this.blur());}
+/*消除文本框透明边框*/
+:focus {outline: none;}
+.excess_86_g140925{ height:95px;}
+
+
+
+
+
+
+
+

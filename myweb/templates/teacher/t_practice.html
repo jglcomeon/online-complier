@@ -1,0 +1,80 @@
+{%extends 'teacher/teacher_index.html'%}
+{%block block_0%}
+
+
+<script type="text/javascript">
+    $(function () {
+        tb=$('#tb')
+if($('#get_name').val()=='None'){
+            alert('请先登入')
+    window.location.href="/enter"
+        }
+    $.get('/t_practice2/',function (dict) {
+        $.each(dict.data,function (index,item) {
+
+            tb.append('<tr style="text-align: center;border-top: 1px solid #e5e5e5;height: 30px">\n' +
+                '        <td style="width: 200px">'+item.practice_name+'</td>\n' +
+                '        <td style="width: 200px">'+item.course_belong+'</td>\n' +
+                '        <td style="width: 200px">'+item.adjust_class+'</td>\n' +
+                '        <td style="width: 200px">'+item.up_time+'</td>\n' +
+                '        <td style="width: 200px"><a href="/see_practice/'+item.id+'/">查看</a>&nbsp&nbsp<a href="/d_practice/'+item.id+'/">删除</a></td>\n' +
+                '    </tr>')
+        })
+    })
+
+
+
+    })
+
+
+
+
+</script>
+{%endblock%}
+{% block block_1%}
+
+<ul  style="display:inline-block;width: 1000px;position: absolute;top: 100px">
+    <li style="float: left;list-style-type:none "><a >我发布的练习</a></li>
+    <li style="float: right;list-style-type: none"><a href="/add_practice" >添加</a></li>
+</ul>
+<div style="display: inline-block;overflow: scroll;width: 1000px;height: 500px;position: absolute;top: 120px;left: 220px">
+<table border="0" id="tb" name="tb">
+    <tr style="text-align: center;border-top: 1px solid #e5e5e5;height: 30px">
+        <td style="width: 200px">练习名称</td>
+        <td style="width: 200px">所属课程</td>
+        <td style="width: 200px">所适用班级</td>
+        <td style="width: 200px">发布时间</td>
+        <td style="width: 200px">操作</td>
+    </tr>
+
+</table>
+
+
+
+</div>
+<script type="text/javascript">
+    function aa(mb) {
+        $('#contans').html(mb)
+    }
+</script>
+
+<!--<div class="modal fade" id="modal01">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                查看练习
+            </div>
+
+            <div class="modal-body" >
+                <div id="contans" name="contans"></div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" data-dismiss="modal">确定</button>
+                <button class="btn btn-warning" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>-->
+<input style="display: none" type="text"  id="get_name" value="{{s_uname}}" ></input>
+{% endblock %}
+

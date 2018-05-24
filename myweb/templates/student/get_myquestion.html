@@ -1,0 +1,80 @@
+{%extends 'student/student_index.html'%}
+{%block block_1%}
+
+    <script type="text/javascript">
+        $(function () {
+            containers=$('#containers')
+
+            $.get('/get_myquestionhandle',function (dict) {
+             $.each(dict.data,function (index,item) {
+                 containers.append('<br/>\n' +
+                     '    <div style="border-top:1px solid  #e5e5e5;border-bottom: 1px solid #e5e5e5;height: auto;width: 650px;display: inline-block">\n' +
+                     '        <div style="display: inline-block;width: 100px;float: left;padding-top: 10px">\n' +
+                     '            <div style="width: 50px;height: 50px;border-radius: 50%;">\n' +
+                     '                <a><img style="width: 50px;height: 50px;border-radius: 50%;" src="'+item.icon_address+'" alt="icon"></a>\n' +
+                     '            </div>\n' +
+                     '            <div>'+item.author_name+'</div>\n' +
+                     '        </div>\n' +
+                     '        <div style="display: inline-block">\n' +
+                     '            <a href="/squestiondetail/'+item.id+'"><h3><div>'+item.question_title+'</div></h3></a>\n' +
+                     '            <div>'+item.sub_time+'</div>\n' +
+                     '            <br/>\n' +
+                     '            <div class="testDIV">'+item.questions_content+'</div>\n' +
+                     '            <br/>\n' +
+                     '            <div style="display: inline-block;"><a href="/attention/'+item.id+'/">+关注</a></div>\n' +
+                     '            &nbsp;&nbsp;\n' +
+                     '            <div style="display: inline-block;">关注量：'+item.attentions_number+'</div>\n' +
+                     '            &nbsp;&nbsp;\n' +
+                     '            <div style="display: inline-block;">回答量：'+item.answers_number+'</div>\n' +
+                     '        </div>')
+             })
+         })
+        })
+    </script>
+    {%endblock%}
+{%block block_55%}
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+
+            <div class="navbar-header">
+                <button class="navbar-toggle" data-toggle="collapse" data-target="#togglemenu">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="#" class="navbar-brand">IMysql</a>
+
+            </div>
+            <div class="collapse navbar-collapse" id="togglemenu">
+                <ul class="nav navbar-nav navbar-right"><!--定义导航中的菜单-->
+                    <li class="active"><a href="/shomepage">欢迎您,&nbsp{{s_uname}}</a></li>
+                    <li><a href="">帮助</a></li>
+                    <li><a href="/about">关于我们</a></li>
+                    <li><a href="/enter">退出</a></li>
+                </ul>
+            </div>
+
+    </div>
+</nav>
+{%endblock%}
+{% block block_11%}
+<div class="container-fluid" style="position: absolute;top: 90px;left: 220px" >
+    <strong>我的提问</strong>
+
+    <div id="containers" name="containers"></div>
+    <br/>
+    <div style="display: inline-block;position: absolute;top:45px;left:700px;width: 150px ;height: 600px;">
+
+        <ul style="text-align: center;border: 1px solid #e5e5e5;line-height:30px  ">
+            <li style="list-style: none;border-bottom:1px solid #e5e5e5 "><a href="/s_question">提问</a></li>
+            <li style="list-style: none;border-bottom:1px solid #e5e5e5 "><a href="/shomepage">热门问题</a></li>
+            <li style="list-style: none;border-bottom:1px solid #e5e5e5 "><a href="/sget_newquestion">最新问题</a></li>
+            <li style="list-style: none;border-bottom:1px solid #e5e5e5"><a href="/sget_attentions">我关注的问题</a></li>
+            <li style="list-style: none;border-bottom:1px solid #e5e5e5"><a href="/sget_myanswer">我回答的问题</a></li>
+            <li style="list-style: none;border-bottom:1px solid #e5e5e5"><a href="/sget_myquestion">我的提问</a></li>
+        </ul>
+    </div>
+
+</div>
+
+{% endblock %}

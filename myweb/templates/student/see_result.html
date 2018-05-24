@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMysql自动评测</title>
+    <script type="text/javascript" src="/static/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="/static/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap.min.css">
+     <style type="text/css">
+        a{
+            text-decoration: none;
+        }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            $.get('/see_resulthandle/{{id}}/',function (dict) {
+                $.each(dict.data,function (index,item) {
+                    $('#tb').append('<tr style="text-align: center;border: 1px solid #e5e5e5;height: 30px">\n' +
+                        '        <td style="width: 200px">'+item.id+'</td>\n' +
+                        '        <td style="width: 200px">'+item.practice_author+'/'+item.author_class+'</td>\n' +
+                        '        <td style="width: 200px">'+item.sub_time+'</td>\n' +
+                        '        <td style="width: 200px">'+item.practice_name+'</td>\n' +
+                        '        <td style="width: 200px">'+item.s_result+'</td>\n' +
+                        '        <td style="width: 200px"><a href="/results/'+item.id+'/">评测详情</a>&nbsp;&nbsp;<a href="/sd_practice/'+item.id+"/"+'">删除</a></td>\n' +
+                        '    </tr>')
+                })
+            })
+        })
+    </script>
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+
+            <div class="navbar-header">
+                <button class="navbar-toggle" data-toggle="collapse" data-target="#togglemenu">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="#" class="navbar-brand">IMysql</a>
+
+            </div>
+            <div class="collapse navbar-collapse" id="togglemenu">
+                <ul class="nav navbar-nav navbar-right"><!--定义导航中的菜单-->
+                    <li class="active"><a href="/shomepage">欢迎您,&nbsp{{s_name}}</a></li>
+                    <li><a href="">帮助</a></li>
+                    <li><a href="/about">关于我们</a></li>
+                    <li><a href="/enter">退出</a></li>
+                </ul>
+            </div>
+
+    </div>
+</nav>
+{%block block_31%}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt;&nbsp;<a href="javascript:history.back();">返回</a>
+<div style="overflow: scroll;display: inline-block;width: 1200px;height: 500px;border: 1px solid black;position: absolute;top: 120px;left: 220px">
+<table style="border: 1px solid #e5e5e5;height: 30px" id="tb" name="tb">
+    <tr style="text-align: center;border: 1px solid #e5e5e5;height: 30px">
+        <td style="width: 200px">提交序号</td>
+        <td style="width: 200px">提交作者/班级</td>
+        <td style="width: 200px">提交时间</td>
+        <td style="width: 200px">练习名称</td>
+        <td style="width: 200px">评测结果</td>
+        <td style="width: 200px">评测详情/删除</td>
+        <td style="">
+    </tr>
+
+</table>
+
+
+
+</div>
+
+{%endblock%}
+<div style="background-color:whitesmoke;height:20px;position: fixed;bottom: 0px;left:0px;right:0px;text-align: center;z-index: 999;margin:auto">Copyright © 2018-2026 1340287344@qq.com</div>

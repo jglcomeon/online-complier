@@ -1,0 +1,49 @@
+{% extends 'teacher/query_result.html'%}
+{%block block_55%}
+    <script type="text/javascript">
+        $(function () {
+            $.get('/enter_infohandle',function (dict) {
+                $.each(dict.data,function (index,item) {
+                    $('#tb').append('<tr style="text-align: center;border: 1px solid #e5e5e5;height: 30px">\n' +
+                        '        <td style="width: 200px">'+item.id+'</td>\n' +
+                        '        <td style="width: 200px">'+item.student_name+'</td>\n' +
+                        '        <td style="width: 200px">'+item.enter_time+'</td>\n' +
+                        '        <td style="width: 200px">'+item.s_class+'</td>\n' +
+                        '    </tr>')
+                })
+            })
+        })
+    </script>
+    {%endblock%}
+{%block block_32%}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt;&nbsp;<a href="javascript:history.back();">返回</a>
+<form class="navbar-form navbar-right" action="/query_enterinfo" method="post">
+    {% csrf_token %}
+                <div class=" form-group"><!--表单组，包括表单文字和表单控件-->
+                   <div class="input-group"><!--输入框组,即表单控件组-->
+                       <input type="text" name="name" id="name" placeholder="请输入姓名查询"  class="form-control">
+                        <span class="input-group-btn">
+                            <input type="submit" name="query" id="query" class="btn btn-default" value="🔍">查询</input>
+                        </span>
+
+                    </div>
+                </div>
+            </form>
+<div style="overflow: scroll;display: inline-block;width: 800px;height: 500px;border: 1px solid black;position: absolute;top: 120px;left: 220px">
+<table style="border: 1px solid #e5e5e5;height: 30px" id="tb" name="tb" >
+    <tr style="text-align: center">
+        <td style="width: 200px">序号</td>
+        <td style="width: 200px">名称</td>
+        <td style="width: 200px">登入时间</td>
+        <td style="width: 200px">班级</td>
+    </tr>
+
+</table>
+
+
+
+</div>
+<br/>
+<div style="background-color:whitesmoke;height:20px;position: fixed;bottom: 0px;left:0px;right:0px;text-align: center;z-index: 999;margin:auto">Copyright © 2018-2026 1340287344@qq.com</div>
+</body>
+{%endblock%}

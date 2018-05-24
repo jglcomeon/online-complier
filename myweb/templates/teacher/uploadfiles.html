@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="/static/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="/static/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../static/bootstrap.min.css">
+    <title>IMysql自动评测</title>
+    <style type="text/css">
+        a, a:link, a:hover, a:active, a:visited {
+            text-decoration: none;
+            color: #666;
+        }
+        a:hover {
+            color: #259;
+        }
+    </style>
+</head>
+<body>
+<form class="form-group" action="/uploadHandle" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <br/>
+    <!--<label for="s_class">请输入使用班级</label>
+    <input type="text" class="form-control" id="s_class" placeholder="如：软件1607" width="500px" name="s_class">-->
+    <label for="be">请选择练习适用班级:</label>
+    <select style="" id="be" name="s_class">
+        <option value="软件1601">软件1601</option>
+        <option value="软件1602">软件1602</option>
+        <option value="软件1603">软件1603</option>
+        <option value="软件1604">软件1604</option>
+        <option value="软件1605">软件1605</option>
+        <option value="软件1606">软件1606</option>
+        <option value="软件1607">软件1607</option>
+        <option value="软件1608">软件1608</option>
+        <option value="软件1609">软件1609</option>
+        <option value="软件1610">软件1610</option>
+        <option value="软件1611">软件1611</option>
+        <option value="软件1612">软件1612</option>
+        <option value="软件1613">软件1613</option>
+        <option value="软件1614">软件1614</option>
+
+
+    </select>
+    &nbsp;&nbsp;&nbsp;<input class="input-group" type="file" name="file">
+    <br/>
+    &nbsp;&nbsp;<input class="btn-primary" type="submit">
+</form>
+</body>

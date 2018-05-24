@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="/static/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="/static/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../static/bootstrap.min.css">
+    <title>IMsql自动评测系统</title>
+    <style type="text/css">
+        .div1{
+            display: inline-block;
+            height: 100px;
+            width: 2000px;
+            margin: 0px auto;
+            border-top:5px solid cadetblue;
+            border-left:1px solid cadetblue;
+            border-bottom:35px solid cadetblue;
+            border-right:1px solid cadetblue;
+
+        }
+        .div2{
+            margin:200px auto;
+            position: relative;
+            border: 1px solid black;
+            width: 400px;
+            height: 250px;
+            background-color: cadetblue;
+            text-align: center;
+            padding-top: 10px;
+        }
+        .clearfix:before{
+    content: '';
+    display:table;
+}</style>
+    <script type="text/javascript">
+        $(function () {
+            if($('#submit1').val()==1)
+            {
+               alert('用户名或密码错误')
+            }
+        })
+
+
+
+
+    </script>
+</head>
+<body>
+<div class="div1 clearfix">
+    <h1 style="color: red;display:inline-block;margin-top: 15px ;margin-left: 10px;width: 1000px ">IMysql</h1>
+    &nbsp
+    <span style="font-size: 28px; font-family: 微软雅黑;color: #015FA7;margin-top: 0px;margin-left: -900px">江西农业大学</span>
+</div>
+<div class="container-fluid ">
+    <div class="div2 clearfix " >
+        <span style="">欢迎使用IMysql自动评测系统</span>
+        <hr style="width: 300px"/>
+        <form class="navbar-form" style="margin-top: 20px" action="/handle" method="post">
+            {%csrf_token%}
+            <div class="form-group">
+
+                <label for="username">用户名:</label>
+                <input class="form-control" type="text" name="userid" id="userid">
+                <br>
+                <br>
+                <label  for="pwd">密码:&nbsp&nbsp</label>
+                <input class="form-control" type="password" name="pwd" id="pwd">
+            </div>
+            <br>
+            <br>
+            <button class="btn btn-primary" value="{{error_false}}" id='submit1' type="submit">登录</button>
+        </form>
+    </div >
+</div>
+<div style="background-color:whitesmoke;height:20px;position: fixed;bottom: 0px;left:0px;right:0px;text-align: center;z-index: 999;margin:auto">Copyright © 2018-2026 1340287344@qq.com</div>
+</body>
+</html>

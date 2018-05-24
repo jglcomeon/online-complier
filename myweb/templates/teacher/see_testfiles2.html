@@ -1,0 +1,19 @@
+{%extends 'teacher/see_testfiles.html'%}
+{%block block_55%}
+    <script type="text/javascript">
+        $(function () {
+            $.get('/query_testfileshandle/{{practicename}}/',function (dict) {
+                $.each(dict.data,function (index,item) {
+                    $('#tb').append('<tr style="text-align: center;border: 1px solid #e5e5e5;height: 30px">\n' +
+                        '        <td style="width: 200px">'+item.id+'</td>\n' +
+                        '        <td style="width: 200px">'+item.testname+'</td>\n' +
+                        '        <td style="width: 200px">'+item.name+'</td>\n' +
+                        '        <td style="width: 200px">'+item.sub_time+'</td>\n' +
+                        '        <td style="width: 200px">'+item.adjust_class+'</td>\n' +
+                        '        <td style="width: 200px"><a href="/download/'+item.saveaddress+'/'+item.testname+'/">下载</a>&nbsp;&nbsp;<a href="/td_testfiles/'+item.id+"/"+'">删除</a></td>\n' +
+                        '    </tr>')
+                })
+            })
+        })
+    </script>
+    {%endblock%}

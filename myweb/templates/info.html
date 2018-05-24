@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="/static/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="/static/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../static/bootstrap.min.css">
+    <title>IMysql自动评测</title>
+    <style type="text/css">
+        a, a:link, a:hover, a:active, a:visited {
+            text-decoration: none;
+            color: #666;
+        }
+        a:hover {
+            color: #259;
+        }
+    </style>
+    {%block block_0%}
+    <script type="text/javascript">
+        $(function () {
+            $('#sel option[value="{{sex}}"]').attr('selected',true)
+        })
+    </script>
+    {%endblock%}
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+
+            <div class="navbar-header">
+                <button class="navbar-toggle" data-toggle="collapse" data-target="#togglemenu">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="#" class="navbar-brand">IMysql</a>
+
+            </div>
+            <div class="collapse navbar-collapse" id="togglemenu">
+                <ul class="nav navbar-nav navbar-right"><!--定义导航中的菜单-->
+                    <li class="active"><a href="{{homepage}}">欢迎您,&nbsp{{s_uname}}</a></li>
+                    <li><a href="#">帮助</a></li>
+                    <li><a href="#">关于我们</a></li>
+                    <li><a href="/enter">退出</a></li>
+                </ul>
+            </div>
+
+    </div>
+</nav>
+<div style="position: absolute;left: 400px;top: 130px">个人主页</div>
+<div style="border-top: 1px solid #e5e5e5;position: absolute;display: inline-block;left: 400px;top: 150px;width: 740px">
+        <form method="post" action="/infohandle" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div style="display: inline-block;position: absolute;top:50px;left: 20px">
+                <label for="icons"><img style="width: 150px;height: 150px;border-radius: 50%;" src="{{photo_address}}" alt="icon"></label>
+                <input type="file" name="icon" style="opacity: 0" id="icons"  title="点击上传头像">
+            </div>
+            <div style="display: inline-block;position: absolute;left:270px; ">
+
+                <div style="display: inline-block;width: 470px">
+                    <br/>
+                    <br/>
+                    <label>邮箱</label>
+                    <br>
+                    <input type="text" name="e_mail" value="{{e_mail}}" style="width: 470px;border-style: none;outline: none;border-bottom: 1px solid #A6C8FF; ">
+                </div>
+                <br/>
+                <div style="display: inline-block;width: 470px">
+                    <br/>
+                    <br/>
+                    <label>电话号码</label>
+                    <br>
+                    <input type="text" value="{{phone_number}}" name="phone_number" style="width: 470px;border-style: none;outline: none;border-bottom: 1px solid #A6C8FF; ">
+                </div>
+                <br/>
+                <div style="width: 470px;display: inline-block;border-bottom: 1px solid #A6C8FF;">
+                    <br/>
+                    <br/>
+                    <label>性别</label>
+                    <br>
+                    <select name="sex" id="sel">
+                        <option value="男">男</option>
+                        <option value="女">女</option>
+                    </select>
+                </div>
+                <br/>
+                <div style="display: inline-block;width: 470px">
+                    <br/>
+                    <br/>
+                    <label>个性签名</label>
+                    <br>
+                    <input type="text" value="{{sign}}" name="sign" style="width: 470px;border-style: none;outline: none;border-bottom: 1px solid #A6C8FF; ">
+                </div>
+                <br/>
+                <div style="display: inline-block;width: 470px">
+                    <br/>
+                    <br/>
+                    <label>学校</label>
+                    <br>
+                    <input type="text" value="{{school}}" name="school" style="width: 470px;border-style: none;outline: none;border-bottom: 1px solid #A6C8FF; ">
+                </div>
+                <br/>
+                <div style="display: inline-block;width: 470px">
+                    <br/>
+                    <br/>
+                    <label>专业</label>
+                    <br>
+                    <input type="text" value="{{major}}" name="major" style="width: 470px;border-style: none;outline: none;border-bottom: 1px solid #A6C8FF; ">
+                </div>
+                <br/>
+                <div style="display: inline-block;width: 470px">
+                    <br/>
+                    <br/>
+                    <label>行业</label>
+                    <br>
+                    <input type="text" value="{{work}}" name="work" style="width: 470px;border-style: none;outline: none;border-bottom: 1px solid #A6C8FF; ">
+                </div>
+                <br/>
+                <div style="display: inline-block;width: 470px">
+                    <br/>
+                    <br/>
+                    <label>就职企业</label>
+                    <br>
+                    <input type="text" value="{{company}}" name="company" style="width: 470px;border-style: none;outline: none;border-bottom: 1px solid #A6C8FF; ">
+                </div>
+                <br/>
+                <div style="display: inline-block;width: 470px">
+                    <br/>
+                    <br/>
+                    <label>职位</label>
+                    <br>
+                    <input type="text" value="{{position}}" name="position" style="width: 470px;border-style: none;outline: none;border-bottom: 1px solid #A6C8FF; ">
+                </div>
+                <br/>
+                <br/>
+                <input type="submit" class="btn-success" value="保存并修改">
+                <br/>
+                <br/>
+                <br/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div style="background-color:whitesmoke;height:20px;position: fixed;bottom: 0px;left:0px;right:0px;text-align: center;z-index: 999;margin:auto">Copyright © 2018-2026 1340287344@qq.com</div>
+</body>
+</html>

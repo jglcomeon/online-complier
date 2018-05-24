@@ -1,0 +1,44 @@
+{%extends 'teacher/query_result.html'%}
+{%block block_32%}
+
+&lt;&lt;&nbsp;
+<a href="javascript:history.back();">返回</a>
+
+<table class="clearfix" style="width: 500px;position: absolute;top: 150px;left: 450px "  border="0" cellspacing="0">
+    <tr style="height: auto;">
+        <td style=" border-top:1px solid #bce8f1;width:250px;text-align: right;padding-top: 10px;padding-bottom: 10px">提交序号&nbsp;&nbsp;</td>
+        <td style=" border-top:1px solid #bce8f1;width: 250px;padding-top: 10px;padding-bottom: 10px; ">{{ids}}</td>
+    </tr>
+    <tr style="height: auto;">
+        <td style=" border-top:1px solid #bce8f1;width:250px;text-align: right;padding-top: 10px;padding-bottom: 10px; ">提交者&nbsp;&nbsp;</td>
+        <td style=" border-top:1px solid #bce8f1;width: 250px;padding-top: 10px;padding-bottom: 10px;  ">{{author}}</td>
+    </tr>
+    <tr style="height: auto;">
+        <td style=" border-top:1px solid #bce8f1;width:250px;text-align: right;padding-top: 10px;padding-bottom: 10px; ">提交时间&nbsp;&nbsp;</td>
+        <td style=" border-top:1px solid #bce8f1;width: 250px;padding-top: 10px;padding-bottom: 10px;  ">{{sub_time}}</td>
+    </tr>
+    <tr style="height: auto;">
+        <td style=" border-top:1px solid #bce8f1;width:250px;text-align: right;padding-top: 10px;padding-bottom: 10px; ">评测结果&nbsp;&nbsp;</td>
+        <td style=" border-top:1px solid #bce8f1;width: 250px;padding-top: 10px;padding-bottom: 10px; ">{{result}}</td>
+    </tr>
+    <tr style="height: auto;">
+        <td style=" border-top:1px solid #bce8f1;width:250px;text-align: right;padding-top: 10px;padding-bottom: 10px; ">试题名称&nbsp;&nbsp;</td>
+        <td style=" border-top:1px solid #bce8f1;width: 250px;padding-top: 10px;padding-bottom: 10px; ">{{practicename}}</td>
+    </tr>
+    <tr style="height: auto;">
+        <td style=" border-top:1px solid #bce8f1;width:250px;text-align: right;padding-top: 10px;padding-bottom: 10px; ">语言&nbsp;&nbsp;</td>
+        <td style=" border-top:1px solid #bce8f1;width: 250px;padding-top: 10px;padding-bottom: 10px;  ">Mysql</td>
+    </tr>
+    <tr style="height: auto;">
+        <td style=" border-top:1px solid #bce8f1;width:250px;text-align: right;padding-top: 10px;padding-bottom: 10px; ">源代码&nbsp;&nbsp;</td>
+        <td style=" border-top:1px solid #bce8f1;width: 250px;padding-top: 10px;padding-bottom: 10px;  ">{{contents}}</td>
+    </tr>
+    <tr style="height: auto;">
+        <td style=" border-top:1px solid #bce8f1;width:250px;text-align: right;padding-top: 10px;padding-bottom: 10px; ">编译信息&nbsp;&nbsp;</td>
+        <td style=" border-top:1px solid #bce8f1;width: 250px;padding-top: 10px;padding-bottom: 10px;  ">{{result_info}}</td>
+    </tr>
+</table>
+
+
+
+{%endblock%}

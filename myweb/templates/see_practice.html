@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="/static/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="/static/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../static/bootstrap.min.css">
+    <title>IMysql自动评测</title>
+    <style type="text/css">
+        a, a:link, a:hover, a:active, a:visited {
+            text-decoration: none;
+            color: #666;
+        }
+        a:hover {
+            color: #259;
+        }
+    .testDIV{
+        width: 520px;
+        text-overflow:ellipsis;
+        white-space:nowrap;
+        overflow:hidden;
+        }
+
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+
+            <div class="navbar-header">
+                <button class="navbar-toggle" data-toggle="collapse" data-target="#togglemenu">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="#" class="navbar-brand">IMysql</a>
+
+            </div>
+            <div class="collapse navbar-collapse" id="togglemenu">
+                <ul class="nav navbar-nav navbar-right"><!--定义导航中的菜单-->
+                    <li class="active"><a href="{{homepage}}">欢迎您,&nbsp{{s_uname}}</a></li>
+                    <li><a href="/info">个人主页</a></li>
+                    <li><a href="#">帮助</a></li>
+                    <li><a href="/about">关于我们</a></li>
+                    <li><a href="/enter">退出</a></li>
+                </ul>
+            </div>
+
+    </div>
+</nav>
+&nbsp;&lt;&lt;&nbsp;<a href="javascript:history.back();">返回</a>
+<h2 style="position: absolute;left:600px;">{{practice_name}}</h2>
+<div style="position: absolute;background-color: #e4f1ff;left: 200px;top:200px;width: 1000px;height: 1000px">
+    <br/>
+    <br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;<strong>练习描述</strong>
+    <br/>
+    <br/>
+    <div style="position: relative;left: 50px;top:10px">{{practice}}</div>
+    <br/>
+    <br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;<strong>发布时间</strong>
+    <br/>
+    <br/>
+    <div style="position: relative;left: 50px;top:10px">{{up_time}}</div>
+    <br/>
+    <br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;<strong>所属课程</strong>
+    <br/>
+    <br/>
+    <div style="position: relative;left: 50px;top:10px">{{course_belong}}</div>
+    <br/>
+    <br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;<strong>适用班级</strong>
+    <br/>
+    <br/>
+    <div style="position: relative;left: 50px;top:10px">{{adjust_class}}</div>
+    <br/>
+    <br/>
+    <form  action="/sub_handle/{{practice_name}}/{{teacher_id}}/{{id}}" method="get">
+        {%csrf_token%}
+        <select id="language" name="language">
+            <option value="sql">mysql</option>
+        </select>
+        <input type="submit" value="提交" class="btn-success">
+        <textarea class="form-control" style="text-indent: 2px" rows="10"   name="practice_1" id="practice_1"></textarea>
+    </form>
+</div>

@@ -1,0 +1,44 @@
+{%extends 'teacher/see_testfiles.html'%}
+{%block block_55%}
+    <script type="text/javascript">
+        $(function () {
+            $.get('/s_gettestfiles',function (dict) {
+                $.each(dict.data,function (index,item) {
+                    $('#tb').append('<tr style="text-align: center;border: 1px solid #e5e5e5;height: 30px">\n' +
+                        '        <td style="width: 200px">'+item.id+'</td>\n' +
+                        '        <td style="width: 200px">'+item.testname+'</td>\n' +
+                        '        <td style="width: 200px">'+item.name+'</td>\n' +
+                        '        <td style="width: 200px">'+item.sub_time+'</td>\n' +
+                        '        <td style="width: 200px">'+item.adjust_class+'</td>\n' +
+                        '        <td style="width: 200px"><a href="/download/'+item.saveaddress+'/'+item.testname+'/">下载</a>&nbsp;&nbsp;<a href="/td_testfiles/'+item.id+"/"+'">#</a></td>\n' +
+                        '    </tr>')
+                })
+            })
+        })
+    </script>
+    {%endblock%}
+{%block block_100%}
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+
+            <div class="navbar-header">
+                <button class="navbar-toggle" data-toggle="collapse" data-target="#togglemenu">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="#" class="navbar-brand">IMysql</a>
+
+            </div>
+            <div class="collapse navbar-collapse" id="togglemenu">
+                <ul class="nav navbar-nav navbar-right"><!--定义导航中的菜单-->
+                    <li class="active"><a href="/shomepage">欢迎您,&nbsp{{s_uname}}</a></li>
+                    <li><a href="">帮助</a></li>
+                    <li><a href="#">关于我们</a></li>
+                    <li><a href="/enter">退出</a></li>
+                </ul>
+            </div>
+
+    </div>
+</nav>
+{%endblock%}

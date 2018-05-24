@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <title>添加练习</title>
+    <script type="text/javascript" src="/static/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="/static/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap.min.css">
+    <script type="text/javascript" src="/static/tiny_mce/tiny_mce.js"></script>
+
+
+    <style type="text/css">
+        a{
+            text-decoration: none;
+        }
+
+    </style>
+    <script type="text/javascript">
+    $(function () {
+
+        if($('#get_name').val()=='None'){
+            alert('请先登入')
+            window.location.href="/enter"
+        }
+
+    })
+</script>
+</head>
+
+<body>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+
+            <div class="navbar-header">
+                <button class="navbar-toggle" data-toggle="collapse" data-target="#togglemenu">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="#" class="navbar-brand">IMysql</a>
+
+            </div>
+            <div class="collapse navbar-collapse" id="togglemenu">
+                <ul class="nav navbar-nav navbar-right"><!--定义导航中的菜单-->
+                    <li class="active"><a href="/thomepage">欢迎您,&nbsp{{s_uname}}</a></li>
+                    <li><a href="">帮助</a></li>
+                    <li><a href="/about">关于我们</a></li>
+                    <li><a href="/enter">退出</a></li>
+                </ul>
+            </div>
+
+    </div>
+</nav>
+
+<form action="/add_handle" method="post">
+    {%csrf_token%}
+    <label for="pname">请输入需要添加练习的名称:</label>
+    <input type="text" id="pname" name="pname">
+    <label for="pc">请选择所属课程名称:</label>
+    <!--<input type="text" id="pc" name="pc">-->
+    <select id="pc" name="pc" >
+        <option value="数据库设计">数据库设计</option>
+        <option value="Python语言程序设计">python语言程序设计</option>
+        <option value="其他">其他</option>
+    </select>
+    <br />
+    <br />
+    <label for="pt">练习描述:</label>
+    <!--<div contenteditable="true" style="border: 1px solid black;width: 300px;height: 200px" id="pt" name="pt"></div> -->
+    <textarea  name="pt" id="pt" class="form-control" style="height: 200px;width: 700px;position: relative;left: 50px"></textarea>
+    <!--<textarea  name="pt" id="pt" ></textarea>-->
+    <label for="as">练习答案</label>
+    <textarea  name="as" id="as" class="form-control" style="height: 200px;width: 700px;position: relative;left: 50px"></textarea>
+
+    <br />
+    <label for="be">请选择练习适用班级:</label>
+    <select style="" id="be" name="be">
+        <option value="软件1601">软件1601</option>
+        <option value="软件1602">软件1602</option>
+        <option value="软件1603">软件1603</option>
+        <option value="软件1604">软件1604</option>
+        <option value="软件1605">软件1605</option>
+        <option value="软件1606">软件1606</option>
+        <option value="软件1607">软件1607</option>
+        <option value="软件1608">软件1608</option>
+        <option value="软件1609">软件1609</option>
+        <option value="软件1610">软件1610</option>
+        <option value="软件1611">软件1611</option>
+        <option value="软件1612">软件1612</option>
+        <option value="软件1613">软件1613</option>
+        <option value="软件1614">软件1614</option>
+
+
+    </select>
+    <!--<input type="text" id="be" name="be" >-->
+    <br/>
+    <input type="submit" class="btn btn-primary" value="提交">
+</form>
+<input style="display: none" type="text"  id="get_name" value="{{s_uname}}" ></input>
+<br/>
+<div style="background-color:whitesmoke;height:20px;position: fixed;bottom: 0px;left:0px;right:0px;text-align: center;z-index: 999;margin:auto">Copyright © 2018-2026 1340287344@qq.com</div>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>提问</title>
+    <script type="text/javascript" src="/static/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="/static/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/static/tiny_mce/tiny_mce.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap.min.css">
+    <script type="text/javascript">
+        $(function () {
+            tinyMCE.init({
+            'mode':'textareas',
+            'theme':'advanced',
+            'width':600,
+            'height':200
+        });
+
+        })
+    </script>
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+
+            <div class="navbar-header">
+                <button class="navbar-toggle" data-toggle="collapse" data-target="#togglemenu">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="#" class="navbar-brand">IMysql</a>
+
+            </div>
+            <div class="collapse navbar-collapse" id="togglemenu">
+                <ul class="nav navbar-nav navbar-right"><!--定义导航中的菜单-->
+                    <li class="active"><a href="/thomepage">欢迎您,&nbsp{{s_uname}}</a></li>
+                    <li><a href="">帮助</a></li>
+                    <li><a href="/about">关于我们</a></li>
+                    <li><a href="/enter">退出</a></li>
+                </ul>
+            </div>
+
+    </div>
+</nav>
+<div class="container-fluid" style="position: absolute;top: 90px;left: 220px;" >
+    <strong>提问</strong>
+    <br/>
+    <form action="/t_questionhandle" method="post">
+        {% csrf_token %}
+        <input class="form-control" type="text" name="title" id="title" placeholder="问题标题">
+        <br/>
+        <textarea name="content" id="content"></textarea>
+        <br/>
+        <label>匿名</label>
+        <input type="checkbox" name="anonymity" id="anoymity" >
+        <br/>
+        <input type="submit" class="btn btn-primary">
+    </form>
+    <br/>
+    <div style="display: inline-block;position:relative;top: -350px;left:620px;width: 150px ;height: 600px;">
+
+        <ul style="text-align: center;border: 1px solid #e5e5e5;line-height:30px  ">
+            <li style="list-style: none;border-bottom:1px solid #e5e5e5 "><a href="/t_question">提问</a></li>
+            <li style="list-style: none;border-bottom:1px solid #e5e5e5 "><a href="/thomepage">热门问题</a></li>
+            <li style="list-style: none;border-bottom:1px solid #e5e5e5 "><a href="/tget_newquestion">最新问题</a></li>
+            <li style="list-style: none;border-bottom:1px solid #e5e5e5"><a href="/tget_attentions">我关注的问题</a></li>
+            <li style="list-style: none;border-bottom:1px solid #e5e5e5"><a href="/tget_myanswer">我回答的问题</a></li>
+            <li style="list-style: none;border-bottom:1px solid #e5e5e5"><a href="/tget_myquestion">我的提问</a></li>
+        </ul>
+    </div>
+
+
+</div>
+<div style="background-color:whitesmoke;height:20px;position: fixed;bottom: 0px;left:0px;right:0px;text-align: center;z-index: 999;margin:auto">Copyright © 2018-2026 1340287344@qq.com</div>
+</body>

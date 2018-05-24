@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>提问</title>
+    <script type="text/javascript" src="/static/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="/static/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/static/tiny_mce/tiny_mce.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap.min.css">
+    <style type="text/css">
+        a, a:link, a:hover, a:active, a:visited {
+            text-decoration: none;
+            color: #666;
+        }
+        a:hover {
+            color: #259;
+        }
+
+
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            tinyMCE.init({
+            'mode':'textareas',
+            'theme':'advanced',
+            'width':600,
+            'height':200
+        });
+        answer=$('#answer');
+        $.get('/getanswers/{{id}}',function (dict) {
+            $.each(dict.data,function (index,item) {
+                answer.append('<div style="border-top:1px solid  #e5e5e5;border-bottom: 1px solid #e5e5e5;height: auto;width: 650px;display: inline-block">\n' +
+                    '                            <br/>\n' +
+                    '                            <div style="display: inline-block"><a><div>'+item.answer_name+'</div></a>\n' +
+                    '\n' +
+                    '                                <br/>\n' +
+                    '                                {%autoescape off%}\n' +
+                    '                                <div >'+item.answer_content+'</div>\n' +
+                    '                                {%endautoescape%}\n' +
+                    '                                <br/>\n' +
+                    '                                <div style="color: #999999;font-size: 14px;display: inline-block">编辑于</div>\n' +
+                    '                                <div style="display: inline-block;color: #999999;font-size: 14px">'+item.answer_time+'</div>\n' +
+                    '\n' +
+                    '                                &nbsp;&nbsp;<div style="display: inline-block;"><a href="/sattention2/'+item.id+'/'+item.question_id+'/">'+'点赞：'+item.praise_numbers1+'</a></div>\n' +
+                    '                                &nbsp;&nbsp;<div style="display: inline-block;"><a href="/sdislike/'+item.id+'/'+item.question_id+'/">'+'踩：'+item.critical_numbers+'</a></div>\n' +
+                    '\n' +
+                    '                            </div>\n' +
+                    '\n' +
+                    '        </div>')
+            })
+        })
+
+        })
+    </script>
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+
+            <div class="navbar-header">
+                <button class="navbar-toggle" data-toggle="collapse" data-target="#togglemenu">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="#" class="navbar-brand">IMysql</a>
+
+            </div>
+            <div class="collapse navbar-collapse" id="togglemenu">
+                <ul class="nav navbar-nav navbar-right"><!--定义导航中的菜单-->
+                    <li class="active"><a href="/shomepage">欢迎您,&nbsp{{s_uname}}</a></li>
+                    <li><a href="">帮助</a></li>
+                    <li><a href="/about">关于我们</a></li>
+                    <li><a href="/enter">退出</a></li>
+                </ul>
+            </div>
+
+    </div>
+</nav>
+<div class="container-fluid" style="position: absolute;top: 90px;left: 220px;" >
+    <strong>问题详情</strong>
+    <br/>
+    <div style="border-top:1px solid  #e5e5e5;border-bottom: 1px solid #e5e5e5;height: auto;width: 650px;display: inline-block">
+                            <div style="display: inline-block;width: 100px;float: left;padding-top: 10px">
+                                <div style="width: 50px;height: 50px;border-radius: 50%;">
+                                    <a><img style="width: 50px;height: 50px;border-radius: 50%;" src="{{icon_address}}" alt="icon"></a>
+                                </div>
+                                <div>{{author_name}}</div>
+                            </div>
+                            <div style="display: inline-block"><a><h3><div>{{question_title}}</div></h3></a>
+                                <div>{{sub_time}}</div>
+                                <br/>
+                                {%autoescape off%}
+                                <div style="width:520px;overflow: auto">{{questions_content}}</div>
+                                {%endautoescape%}
+                                <br/>
+                                <div style="display: inline-block;"><a href="/attention/{{id}}/">+关注</a></div>
+                                &nbsp;&nbsp;<div style="display: inline-block;">关注量：{{attentions_number}}</div>
+                                &nbsp;&nbsp;
+                                <div style="display: inline-block;">回答量：{{answers_number}}</div>
+                            </div>
+
+    </div>
+    <br/>
+    <div id="answer" name="answer">
+
+    </div>
+    <br />
+    <form action="/sanswerhandle/{{id}}/" method="post">
+        {% csrf_token %}
+        <textarea name="content" id="content"></textarea>
+        <br/>
+        <label>匿名</label>
+        <input type="checkbox" name="anonymity" id="anoymity" >
+        <br/>
+        <input type="submit" class="btn btn-primary">
+    </form>
+    <br/>
+    <div style="display: inline-block;position:absolute;top: 20px;left:700px;width: 150px ;height: 600px;">
+
+        <ul style="text-align: center;border: 1px solid #e5e5e5;line-height:30px  ">
+            <li style="list-style: none;border-bottom:1px solid #e5e5e5 "><a href="/s_question">提问</a></li>
+            <li style="list-style: none;border-bottom:1px solid #e5e5e5 "><a href="/shomepage">热门问题</a></li>
+            <li style="list-style: none;border-bottom:1px solid #e5e5e5 "><a href="/sget_newquestion">最新问题</a></li>
+            <li style="list-style: none;border-bottom:1px solid #e5e5e5"><a href="/sget_attentions">我关注的问题</a></li>
+            <li style="list-style: none;border-bottom:1px solid #e5e5e5"><a href="/sget_myanswer">我回答的问题</a></li>
+            <li style="list-style: none;border-bottom:1px solid #e5e5e5"><a href="/sget_myquestion">我的提问</a></li>
+        </ul>
+    </div>
+
+
+</div>
+<div style="background-color:whitesmoke;height:20px;position: fixed;bottom: 0px;left:0px;right:0px;text-align: center;z-index: 999;margin:auto">Copyright © 2018-2026 1340287344@qq.com</div>
+</body>
+</html>
